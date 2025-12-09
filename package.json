@@ -1,0 +1,27 @@
+{
+  "name": "pantry-inventory-fcscratch",
+  "version": "1.0.0",
+  "description": "FC2 Scratch Project with Katy, Lawrenzo, Robyn, &amp; Sarai",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "cd client && npm run dev",
+    "server": "cd server && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BloodR00t/pantry-inventory-fcscratch.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/BloodR00t/pantry-inventory-fcscratch/issues"
+  },
+  "homepage": "https://github.com/BloodR00t/pantry-inventory-fcscratch#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
