@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 
 
-const groceryItemSchema = new mongoose.Schema({
+const pantryItemSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'Grocery item name is required'],
+    required: [true, 'Item name is required'],
   },
   category: {
     type: String,
@@ -29,6 +29,6 @@ const groceryItemSchema = new mongoose.Schema({
   },
 });
 
-const GroceryItem = mongoose.model('GroceryItem', groceryItemSchema);
+const PantryItem = mongoose.model('PantryItem', pantryItemSchema);
 
-export default GroceryItem;
+export default PantryItem;
