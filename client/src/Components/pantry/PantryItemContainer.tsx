@@ -1,12 +1,14 @@
 import styles from './pantry.css'
-
-import React from 'react'
+import PantryItem from './PantryItem'
 
 const PantryItemContainer = () => {
 
-    
+
   return (
-    <div>PantryItemContainer</div>
+    <>
+    <div className='pantry-container'>PantryItemContainer</div>
+    < PantryItem />
+    </>
   )
 }
 
