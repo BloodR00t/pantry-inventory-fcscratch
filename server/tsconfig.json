@@ -1,14 +1,16 @@
 {
-    "compilerOptions": {
-        "target": "es2016",
-        "jsx": "preserve",
-        "module": "commonjs",
-        "allowJs": true,
-        "outDir": "./dist",
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
-        "strict": true,
-        "skipLibCheck": true
-    },
-    "exclude": ["node_modules", "dist", "client"]
+  "compilerOptions": {
+    "target": "es2016",
+    "jsx": "preserve",
+    "module": "commonjs",
+    "allowJs": true,
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": false,
+    "noEmitOnError": false
+  },
+  "exclude": ["node_modules", "dist", "client"]
 }
