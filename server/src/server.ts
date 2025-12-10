@@ -17,8 +17,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // console.log(process.env.MONGODB_URI);
 const uri: string | any = process.env.MONGODB_URI; //any works, but string | undefined doesn't work - look up specific types for .env
-console.log('uri: ', uri);
-console.log('process: ', process.env.TEST);
+// console.log('uri: ', uri);
+// console.log('process: ', process.env.TEST);
 
 (async () => {
   try {
