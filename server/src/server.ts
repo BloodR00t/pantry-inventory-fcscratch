@@ -2,7 +2,14 @@ import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+/**
+ * Moving from Model-rg
+ * 
+ * import * as dotenv from 'dotenv'; 
 
+dotenv.config();
+
+const MONGO_URI = process.env.PG_URI || 'mongodb://localhost:27017/groceryDB'; */
 dotenv.config();
 
 const app: Express = express();
