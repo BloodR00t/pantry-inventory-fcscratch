@@ -1,11 +1,12 @@
+import dotenv, { config } from 'dotenv';
+// import 'dotenv/config';
 import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import dotenv, { config } from 'dotenv';
-require('dotenv').config();
+// require('dotenv').config();
 
 // import process from 'process';
-console.log(process.env.MONGODB_URI);
+// console.log(process.env.MONGODB_URI);
 
 dotenv.config();
 
@@ -14,11 +15,11 @@ const app: Express = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-console.log(process.env.MONGODB_URI);
-// const uri: string = process.env.MONGODB_URI;
-const uri = `mongodb+srv://lawrenzolue_db_user:JKLzqiO8GtfgnIFm@inventory-cluster.rja5yup.mongodb.net/?appName=Inventory-Cluster`;
-// console.log(uri);
-console.log(process.env.TEST);
+// console.log(process.env.MONGODB_URI);
+const uri: string | any = process.env.MONGODB_URI; //any works, but string | undefined doesn't work - look up specific types for .env
+// const uri = `mongodb+srv://lawrenzolue_db_user:JKLzqiO8GtfgnIFm@inventory-cluster.rja5yup.mongodb.net/?appName=Inventory-Cluster`;
+console.log('uri: ', uri);
+console.log('process: ', process.env.TEST);
 
 (async () => {
   try {
