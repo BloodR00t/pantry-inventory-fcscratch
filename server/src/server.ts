@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import dotenv, { config } from 'dotenv';
 require('dotenv').config();
 
-// import process from 'process';
+import process from 'process';
 
 dotenv.config();
 
@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const uri: string = process.env.MONGODB_URI;
-
+console.log(uri);
 
 (async () => {
   try {
