@@ -1,8 +1,10 @@
-// import Header and corresponding css file
-// import CreateItemContainer and corresponding css file
-// import InventoryContainer and corresponding css file
-// import InventoryItem and corresponding css file
-// import Footer and corresponding css file
+
+import Header from './components/header/Header'
+import CreatePantryItemContainer from './components/create-container/CreatePantryItemContainer'
+import Footer from './components/footer/Footer'
+import PantryItemContainer from './components/pantry/PantryItemContainer'
+
+
 
 import './App.css'
 
@@ -12,7 +14,11 @@ function App() {
   return (
     <>
      <div className="app-container">
-      
+      < Header />
+      < CreatePantryItemContainer />
+      < PantryItemContainer />
+      < Footer />
+
      </div>
      
     </>
