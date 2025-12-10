@@ -5,7 +5,6 @@ import dotenv, { config } from 'dotenv';
 require('dotenv').config();
 
 // import process from 'process';
-console.log(process.env.MONGODB_URI);
 
 dotenv.config();
 
@@ -14,10 +13,8 @@ const app: Express = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-console.log(process.env.MONGODB_URI);
-// const uri: string = process.env.MONGODB_URI;
-// console.log(uri);
-console.log(process.env.TEST);
+const uri: string = process.env.MONGODB_URI;
+
 
 (async () => {
   try {
