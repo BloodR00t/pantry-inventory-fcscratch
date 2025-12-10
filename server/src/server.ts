@@ -1,11 +1,9 @@
+import dotenv, { config } from 'dotenv';
+// import 'dotenv/config';
 import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-/**
- * Moving from Model-rg
- * 
- * import * as dotenv from 'dotenv'; 
+
 
 dotenv.config();
 
@@ -17,25 +15,23 @@ const app: Express = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-const uri: string =
-    process.env.MONGODB_URI || 'mongodb://localhost:27017/your-app';
+const uri = `mongodb+srv://lawrenzolue_db_user:JKLzqiO8GtfgnIFm@inventory-cluster.rja5yup.mongodb.net/?appName=Inventory-Cluster`;
 
 (async () => {
-    try {
-        await mongoose.connect(uri);
-        console.log('Connected to the database');
-    } catch(error) {
-        console.error(error);
-    }
+  try {
+    await mongoose.connect(uri);
+    console.log('Connected to the database');
+  } catch (error) {
+    console.error(error);
+  }
 })();
 
 app.get('/health', (_req: Request, res: Response) => {
-    res.status(200).send('Server is running');
+  res.status(200).send('Server is running');
 });
 
 const PORT: string | number = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-    console.log(`Server is running on PORT: ${PORT}`);
+  console.log(`Server is running on PORT: ${PORT}`);
 });
