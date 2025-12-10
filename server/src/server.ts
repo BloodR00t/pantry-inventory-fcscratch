@@ -16,7 +16,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 console.log(process.env.MONGODB_URI);
 // const uri: string = process.env.MONGODB_URI;
-const uri = `mongodb+srv://lawrenzolue_db_user:JKLzqiO8GtfgnIFm@inventory-cluster.rja5yup.mongodb.net/?appName=Inventory-Cluster`;
 // console.log(uri);
 console.log(process.env.TEST);
 
