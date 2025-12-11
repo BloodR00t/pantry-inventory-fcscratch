@@ -19,12 +19,6 @@ type FormFields = {
 };
 
 const CreatePantryItemForm = () => {
-  // const { register, handleSubmit } = useForm<FormFields>();
-
-  // const onSubmit: SubmitHandler<FormFields> = (data) => {
-  //   console.log(data);
-  // };
-
   const {
     register,
     handleSubmit,
@@ -34,10 +28,19 @@ const CreatePantryItemForm = () => {
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log(data);
+      const response = await fetch('http://localhost:3000/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      console.log('Response: ', result);
     } catch (err) {
-      setError('name', { message: 'You entered something wrong' });
+      setError('name', {
+        message: 'You entered something wrong - endpoint issues',
+      });
       console.log(err);
     }
   };
