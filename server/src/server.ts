@@ -1,9 +1,8 @@
-
 import dotenv, { config } from 'dotenv';
-import express, { Express, Request, Response , NextFunction} from 'express';
+import express, { Express, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import pantryController from './controllers/pantryController'
+import pantryController from './controllers/pantryController';
 dotenv.config();
 
 const app: Express = express();
@@ -14,9 +13,8 @@ app.use(express.urlencoded({ extended: true }));
 
 const PORT: string | number = process.env.PORT || 3000;
 
+const uri: string | any = process.env.MONGODB_URI;
 
-const uri: string | any =
-    process.env.MONGODB_URI;
 
 
 (async () => {
@@ -40,8 +38,8 @@ pantryRouter.get('/:name', pantryController.getPantryItem, (req:Request, res: Re
 })
 //getting the full inventory
 pantryRouter.get('/', pantryController.getPantryInventory, (req:Request, res: Response) => {
-    res.status(200).send('testing get request'+ res.locals.inventory);
-//above, the .send being chaged to .json allows it to be looked at on the front end, but as .send only shows in terminal
+    res.status(200).json(res.locals.inventory);
+
 })
 
 //redirecting to full inventory
