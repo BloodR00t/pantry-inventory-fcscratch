@@ -4,7 +4,6 @@ import CreatePantryItemForm from './CreatePantryItemForm';
 
 const CreatePantryItemContainer = () => {
 
-    
   return (
     <>
     <div className='create-container'>CreatePantryItemContainer</div>
