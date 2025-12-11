@@ -1,14 +1,44 @@
+import { useState, useEffect } from 'react'
 import styles from './pantry.css'
-import PantryItem from './PantryItem'
+// import PantryItem from '.pantry/PantryItem.tsx';
+import PantryItem from './PantryItem.tsx'
+
+interface PantryItemType {
+  _id?: string;
+  name: string;
+  category?: string;
+  quantity: number;
+  unitType?: string;
+  threshold?: number;
+  expirationDate?: Date;
+}
+
 
 const PantryItemContainer = () => {
+  const [items, setItems] = useState<PantryItemType[]>([]);
+
+  useEffect(() => {
+    async function getPantryItems() {
+      const response = await fetch('http://localhost:3000/inventory'); 
+      if (!response.ok) {
+        const message = `An error occurred: ${response.statusText}`;
+        console.error(message);
+        return;
+      }
+      const items = await response.json();
+      setItems(items);
+    }
+    getPantryItems();
+    return;
+  }, [items.length]);
 
 
   return (
-    <>
-    <div className='pantry-container'>PantryItemContainer</div>
-    < PantryItem />
-    </>
+    <div className='pantry-container'>
+      {items.map((item) => (
+        <PantryItem key={item._id} item={item} />
+      ))}
+    </div>
   )
 }
 
