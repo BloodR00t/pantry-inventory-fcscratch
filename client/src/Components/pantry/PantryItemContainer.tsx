@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import styles from './pantry.css'
+import './pantry.css'
 // import PantryItem from '.pantry/PantryItem.tsx';
 import PantryItem from './PantryItem.tsx'
 
@@ -30,7 +30,7 @@ const PantryItemContainer = () => {
     }
     getPantryItems();
     return;
-  }, [pItems]);
+  }, []);
 
   console.log(`Items: ${pItems}`);
  
