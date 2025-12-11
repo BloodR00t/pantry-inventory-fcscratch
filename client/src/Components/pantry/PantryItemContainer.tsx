@@ -15,28 +15,29 @@ interface PantryItemType {
 
 
 const PantryItemContainer = () => {
-  const [items, setItems] = useState<PantryItemType[]>([]);
+  const [pItems, setPItems] = useState<PantryItemType[]>([]);
 
   useEffect(() => {
     async function getPantryItems() {
-      const response = await fetch('http://localhost:3000/inventory'); 
+      const response = await fetch('http://localhost:3000'); 
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
         console.error(message);
         return;
       }
       const items = await response.json();
-      setItems(items);
+      setPItems(items);
     }
     getPantryItems();
     return;
-  }, [items.length]);
+  }, [pItems]);
 
-
+  console.log(`Items: ${pItems}`);
+ 
   return (
     <div className='pantry-container'>
-      {items.map((item) => (
-        <PantryItem key={item._id} item={item} />
+               {pItems.map((pItem) => (
+        <PantryItem key={pItem._id} pantryItem={pItem} />
       ))}
     </div>
   )
