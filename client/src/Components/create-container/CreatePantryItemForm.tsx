@@ -1,5 +1,12 @@
 import styles from './createContainer.css';
 import { useForm, type SubmitHandler } from 'react-hook-form';
+// import { z } from 'zod';
+
+//I'll go down a rabbit hole if I keep looking at data validation.
+// const schema = z.object({
+//   name: z.string().required("Item is required");
+
+// });
 
 type FormFields = {
   _id?: string;
@@ -21,11 +28,18 @@ const CreatePantryItemForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    setError,
+    formState: { errors, isSubmitting },
   } = useForm<FormFields>();
 
-  const onSubmit: SubmitHandler<FormFields> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      console.log(data);
+    } catch (err) {
+      setError('name', { message: 'You entered something wrong' });
+      console.log(err);
+    }
   };
   return (
     <>
@@ -53,7 +67,9 @@ const CreatePantryItemForm = () => {
           type='date'
           placeholder='Expiration Date'
         />
-        <button type='submit'>Submit</button>
+        <button disabled={isSubmitting} type='submit'>
+          {isSubmitting ? 'Filling your pantry!' : 'Submit'}
+        </button>
       </form>
     </>
   );
