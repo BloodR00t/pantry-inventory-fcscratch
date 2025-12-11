@@ -1,5 +1,4 @@
 import './footer.css';
-import { Link } from 'react-router-dom';
 
 // const Footer = () => {
 
@@ -19,11 +18,7 @@ export default function Footer(){
         <p className="footer-copyright">
           &copy; { currentYear } BLOODROOT-FCNY2 <span>🫜</span>
         </p>
-        <nav className="footer-nav">
-          <Link to="/" className="footer-link">Home</Link>
-          <span>|</span>
-          <Link to="/inventory" className="footer-link">Inventory</Link>
-        </nav>
+    
         <p>
           Built with MongoDB, Express, React, Node
         </p>

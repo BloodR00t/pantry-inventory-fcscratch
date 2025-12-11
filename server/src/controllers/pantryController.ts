@@ -130,4 +130,5 @@ async deletePantryItem (req: Request, res: Response, next: NextFunction): Promis
   }
 },
 };
+
 export default pantryController;
