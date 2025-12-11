@@ -1,4 +1,4 @@
-import styles from './createContainer.css';
+import './createContainer.css';
 import CreatePantryItemForm from './CreatePantryItemForm';
 
 const CreatePantryItemContainer = () => {

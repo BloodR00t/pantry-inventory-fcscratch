@@ -140,4 +140,5 @@ const pantryController = {
     }
   },
 };
+
 export default pantryController;
