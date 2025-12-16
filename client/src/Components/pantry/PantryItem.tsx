@@ -1,124 +1,33 @@
-// client/src/components/pantry/PantryItem.tsx
-import React from 'react';
+import './pantry.css';
 
-export interface PantryItemType {
+interface PantryItemType {
   _id?: string;
   name: string;
   category?: string;
   quantity: number;
   unitType?: string;
   threshold?: number;
+  expirationDate?: string;
+  onButtonClick?: () => void;
+  // buttonText?: string;
+  buttonDisabled?: boolean;
+  }
+
+interface PantryItemProps {
+  pantryItem: PantryItemType;
 }
 
-type PantryItemProps = {
-  pantryItem: PantryItemType;
-  onUpdate: (name: string) => void;
-  onDelete: (name: string) => void;
-  disabled?: boolean;
-};
-
-const PantryItem = ({ pantryItem, onUpdate, onDelete, disabled = false }: PantryItemProps) => {
-  const { name, category, quantity, unitType, threshold } = pantryItem;
-
-  return (
-    <article className="pantry-card">
-      <div className="pantry-card__top">
-        <h3 className="name">{name.toUpperCase()}</h3>
-        {category ? <span className="pill">{category.toLowerCase()}</span> : <span className="pill pill--muted">uncategorized</span>}
-      </div>
-
-      <ul className="listItems">
-        <li className="quantity">
-          <span className="label">Quantity</span>
-          <span className="value">
-            {quantity}
-            {unitType ? <span className="unit"> {unitType.toLowerCase()}</span> : null}
-          </span>
-        </li>
-
-        {typeof threshold === 'number' && (
-          <li className="threshold">
-            <span className="label">Threshold</span>
-            <span className="value">{threshold}</span>
-          </li>
-        )}
-      </ul>
-
-      <div className="button-container">
-        <button
-          type="button"
-          onClick={() => onUpdate(name)}
-          disabled={disabled}
-          className="button button--ghost"
-        >
-          Update
-        </button>
-
-        <button
-          type="button"
-          onClick={() => onDelete(name)}
-          disabled={disabled}
-          className="button button--danger"
-        >
-          Delete
-        </button>
-      </div>
-    </article>
-  );
-};
-
-export default PantryItem;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React from 'react';
-
-// export interface PantryItemType {
-//   _id?: string;
-//   name: string;
-//   category?: string;
-//   quantity: number;
-//   unitType?: string;
-//   threshold?: number;
-
-// type PantryItemProps = {
-//   pantryItem: PantryItemType;
-//   onUpdate: (name: string) => void;
-//   onDelete: (name: string) => void;
-//   disabled?: boolean;
-// };
-//   onButtonClick?: () => void;
-//   // buttonText?: string;
-//   buttonDisabled?: boolean;
+// function to convert Date to a React readable format
+// const formatExpirationDate = (date?: Date): string => {
+//   if (!date) {
+//     return "N/A";
 //   }
-
-// interface PantryItemProps {
-//   pantryItem: PantryItemType;
-// }
-
-// // function to convert Date to a React readable format
-// // const formatExpirationDate = (date?: Date): string => {
-// //   if (!date) {
-// //     return "N/A";
-// //   }
-// //   return new Intl.DateTimeFormat('en-US', {
-// //     year: 'numeric',
-// //     month: '2-digit',
-// //     day: '2-digit',
-// //   }).format(date);
-// // };
+//   return new Intl.DateTimeFormat('en-US', {
+//     year: 'numeric',
+//     month: '2-digit',
+//     day: '2-digit',
+//   }).format(date);
+// };
 
 function formatExpirationDate(dateString?: string) {
   if (!dateString) return "N/A";
@@ -211,11 +120,9 @@ const expirationStatus = getExpirationStatus(expirationDate);
               </button>
           </div>
         
-//       </article>
-//     </>
-//   );
-// };
+      </article>
+    </>
+  );
+};
 
-// export default PantryItem;
-
-
+export default PantryItem;
