@@ -20,6 +20,7 @@ const PORT = process.env.PORT || '3000';
 
 (async () => {
   try {
+    //Type error when I remove this OR Statement for some reason -- server crashes
     await mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://virtualdb:Mainconnect12345@cluster0.2s4xmsi.mongodb.net/?appName=Cluster0");
     console.log('Connected to the database');
   } catch (error) {
