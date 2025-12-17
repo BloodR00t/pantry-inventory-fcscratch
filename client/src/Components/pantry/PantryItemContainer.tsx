@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react'
-import './pantry.css'
+import { useMemo, useState } from "react";
+import "./pantry.css";
+import PantryItem from "./PantryItem";
 
-import PantryItem from './PantryItem.tsx';
-
-interface PantryItemType {
+export interface PantryItemType {
   _id?: string;
   name: string;
   category?: string;
@@ -12,6 +11,14 @@ interface PantryItemType {
   threshold?: number;
   expirationDate?: string;
 }
+
+type Props = {
+  items: PantryItemType[];
+  loading: boolean;
+  error: string;
+  onUpdate: (itemName: string, updates: Partial<PantryItemType>) => Promise<void>;
+  onDelete: (itemName: string) => Promise<void>;
+};
 
 function getStatus(item: PantryItemType) {
   if (!item.expirationDate) return "no-date";
@@ -30,57 +37,75 @@ function getStatus(item: PantryItemType) {
   return "fresh";
 }
 
-function sortByExpiration(a: PantryItemType, b: PantryItemType) {
-  const aTime = a.expirationDate ? new Date(a.expirationDate).getTime() : Infinity;
-  const bTime = b.expirationDate ? new Date(b.expirationDate).getTime() : Infinity;
-  return aTime - bTime; // soonest first
-}
+const PantryItemContainer = ({ items, loading, error, onUpdate, onDelete }: Props) => {
+  const [filter, setFilter] =
+    useState<"all" | "expired" | "expiring-soon" | "fresh">("all");
 
+  const displayedItems = useMemo(() => {
+    return items.filter((item) => {
+      const status = getStatus(item);
 
-const PantryItemContainer = () => {
-  const [pItems, setPItems] = useState<PantryItemType[]>([]);
-  const [filter, setFilter] = useState<"all" | "expired" | "expiring-soon" | "fresh">("all");
+      // ✅ All = everything NOT expired
+      if (filter === "all") return status !== "expired";
 
-  useEffect(() => {
-    async function getPantryItems() {
-      const response = await fetch('http://localhost:3000');
-      if (!response.ok) {
-        const message = `An error occurred: ${response.statusText}`;
-        console.error(message);
-        return;
-      }
-      const items = await response.json();
-      setPItems(items);
+      return status === filter;
+    });
+  }, [items, filter]);
+
+  const handleMarkExpired = async (itemName: string) => {
+    const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+    await onUpdate(itemName, { expirationDate: yesterday });
+
+    // ✅ move user into expired view
+    setFilter("expired");
+  };
+
+  const handleClearExpired = async () => {
+    const expiredItems = items.filter((it) => getStatus(it) === "expired");
+    for (const it of expiredItems) {
+      await onDelete(it.name);
     }
-    getPantryItems();
-    return;
-  }, []);
-
-  console.log(`Items: ${pItems}`);
-
-const displayedItems = pItems
-    .filter((item) => (filter === "all" ? true : getStatus(item) === filter))
-    .slice()
-    .sort(sortByExpiration);
+  };
 
   return (
-   <> <div style={{ display: "flex", gap: "8px", justifyContent: "center", marginBottom: "12px" }}>
+    <div className="pantry-container">
+      <div className="pantry-filters">
         <button className="button" onClick={() => setFilter("all")}>All</button>
         <button className="button" onClick={() => setFilter("expired")}>Expired</button>
         <button className="button" onClick={() => setFilter("expiring-soon")}>Expiring Soon</button>
         <button className="button" onClick={() => setFilter("fresh")}>Fresh</button>
       </div>
 
-      <div className='pantry-container'>
-        {displayedItems.map((pItem) => (
-          <PantryItem key={pItem._id} pantryItem={pItem} />
-        ))}
-      </div>
-    </>
+      
+      {filter === "expired" && !loading && !error && (
+        <div className="expired-actions">
+          <button className="button button--danger" onClick={handleClearExpired}>
+            Clear Expired
+          </button>
+        </div>
+      )}
+
+      {loading && <p className="status">Loading…</p>}
+      {!loading && error && <p className="status error">{error}</p>}
+
+      {!loading && !error && (
+        <div className="pantry-grid">
+          {displayedItems.map((pItem) => (
+            <PantryItem
+              key={pItem._id ?? pItem.name}
+              pantryItem={pItem}
+              onMarkExpired={handleMarkExpired}
+            />
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
 
 export default PantryItemContainer;
+
+
 
 
 // interface PantryItemType {
