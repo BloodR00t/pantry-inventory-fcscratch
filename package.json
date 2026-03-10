@@ -1,7 +1,7 @@
 {
   "name": "pantry-inventory-fcscratch",
   "version": "1.0.0",
-  "description": "FC2 Scratch Project with Katy, Lawrenzo, Robyn, &amp; Sarai",
+  "description": "A smart pantry inventory tracker built with React and Node.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
