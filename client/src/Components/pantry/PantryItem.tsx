@@ -39,6 +39,7 @@ const PantryItem = ({ pantryItem }: PantryItemProps) => {
       if (onButtonClick) {
         onButtonClick();
       }
+      //temporary placeholder functionality
      console.log("button works"); 
     }
   return (
