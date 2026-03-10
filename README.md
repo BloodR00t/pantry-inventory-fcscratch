@@ -157,4 +157,4 @@ See the [Features](#features) table above for planned additions. Current develop
 | Katy Wells | [@katygus](https://github.com/katygus) |
 | Lawrenzo Lue | [@lawrenzo456](https://github.com/lawrenzo456) |
 | Robyn Geldner | [@5Runi](https://github.com/5Runi) |
-| Xavier (Sarai) Roberson | GitHub link pending |
+| Xavier (Sarai) Roberson | [@SunnieSarai]https://github.com/SunnieSarai |
