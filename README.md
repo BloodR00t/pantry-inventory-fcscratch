@@ -5,7 +5,7 @@
 <!-- Add a screenshot or GIF of the app here -->
 <!-- ![Pantry Pal in action](./assets/demo.gif) -->
 
----
+--- 
 
 ## Table of Contents
 
@@ -21,7 +21,7 @@
 - [Roadmap](#roadmap)
 - [Changelog](#changelog)
 - [License](#license)
-- [Contributors](#contributors)
+- [Contributors](#contributors) 
 
 ---
 
